@@ -1,0 +1,6 @@
+{
+  "name": "StudySphere",
+  "description": "A premium next-generation student collaboration platform for peer learning, mentorship, and career growth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

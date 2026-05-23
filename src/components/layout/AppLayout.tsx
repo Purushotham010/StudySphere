@@ -11,7 +11,14 @@ interface AppLayoutProps {
 export function AppLayout({ children }: AppLayoutProps) {
   const [networkError, setNetworkError] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showMobileWarning, setShowMobileWarning] = useState(true);
+  const [showMobileWarning, setShowMobileWarning] = useState(() => {
+    return localStorage.getItem("hide_mobile_warning") !== "true";
+  });
+
+  const handleDismissWarning = () => {
+    setShowMobileWarning(false);
+    localStorage.setItem("hide_mobile_warning", "true");
+  };
 
   useEffect(() => {
     let active = true;
@@ -123,7 +130,7 @@ export function AppLayout({ children }: AppLayoutProps) {
               <h4 className="text-sm font-bold text-white mb-1">Desktop Recommended</h4>
               <p className="text-xs text-gray-400 leading-relaxed font-light">StudySphere is heavily optimized for larger screens. For the best experience, please use a laptop or system.</p>
             </div>
-            <button onClick={() => setShowMobileWarning(false)} className="text-gray-500 hover:text-white p-1 hover:bg-white/10 rounded-lg transition-colors">
+            <button onClick={handleDismissWarning} className="text-gray-500 hover:text-white p-1 hover:bg-white/10 rounded-lg transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
           </motion.div>

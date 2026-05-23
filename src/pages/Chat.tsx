@@ -733,8 +733,8 @@ export default function Chat() {
             </div>
 
             {selectedChatId !== "ai-mentor" && activePeer && (
-              <div className="hidden lg:flex items-center gap-3">
-                <div className="flex items-center gap-1.5 mr-2">
+              <div className="flex items-center gap-3">
+                <div className="hidden lg:flex items-center gap-1.5 mr-2">
                   {activePeer.skills.slice(0, 3).map(s => (
                     <span key={s} className="px-2.5 py-1 rounded-lg bg-purple-500/5 border border-purple-500/10 text-[9px] font-bold text-purple-400 uppercase tracking-widest">#{s}</span>
                   ))}

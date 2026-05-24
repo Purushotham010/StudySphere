@@ -108,6 +108,10 @@ export default function ResumeBuilder() {
           setIsGenerating(false);
           setGenPhase("done");
           
+          if (user?.id) {
+            localStorage.setItem(`studysphere_has_resume_${user.id}`, "true");
+          }
+          
           // Animate score
           const interval = setInterval(() => {
             setScore(prev => {
@@ -127,6 +131,17 @@ export default function ResumeBuilder() {
     setHasResume(false);
     setScore(0);
     setGenPhase("done");
+  };
+
+  const handleLoadExisting = () => {
+    if (!user?.id) return;
+    const hasSaved = localStorage.getItem(`studysphere_has_resume_${user.id}`);
+    if (hasSaved === "true") {
+      setHasResume(true);
+      setScore(92);
+    } else {
+      alert("No existing AI Resume found. Please generate one first to save it to your profile.");
+    }
   };
 
   return (
@@ -229,7 +244,10 @@ export default function ResumeBuilder() {
                         >
                           <Wand2 size={16} /> Generate Resume
                         </button>
-                        <button className="glass py-5 rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-all border-white/10 text-gray-400">
+                        <button 
+                          onClick={handleLoadExisting}
+                          className="glass py-5 rounded-2xl text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-all border-white/10 text-gray-400"
+                        >
                           <History size={16} /> Load Existing
                         </button>
                       </div>

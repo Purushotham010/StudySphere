@@ -52,31 +52,63 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const notifications = [
+  const { profile, user, refreshProfile } = useAuth();
+  const [dbNotifications, setDbNotifications] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchNotifications = async () => {
+      const { data, error } = await supabase
+        .from('connections')
+        .select(`
+          id,
+          created_at,
+          requester:profiles!requester_id(full_name)
+        `)
+        .eq('recipient_id', user.id)
+        .eq('status', 'pending');
+      
+      if (data && !error) {
+        const mapped = data.map((conn: any) => {
+          const diffMins = Math.floor((new Date().getTime() - new Date(conn.created_at).getTime()) / 60000);
+          const timeStr = diffMins < 60 ? `${diffMins}m ago` : diffMins < 1440 ? `${Math.floor(diffMins/60)}h ago` : `${Math.floor(diffMins/1440)}d ago`;
+
+          // Handle array or single object from Supabase foreign key mapping safely
+          const requesterName = Array.isArray(conn.requester) 
+            ? conn.requester[0]?.full_name 
+            : conn.requester?.full_name;
+
+          return {
+            id: conn.id,
+            title: "New Connection Request",
+            desc: `${requesterName || 'A student'} wants to connect with you.`,
+            time: timeStr,
+            unread: true
+          };
+        });
+        setDbNotifications(mapped);
+      }
+    };
+    
+    fetchNotifications();
+    
+    const channel = supabase.channel('navbar-notifications')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'connections', filter: `recipient_id=eq.${user.id}` }, fetchNotifications)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'connections', filter: `recipient_id=eq.${user.id}` }, fetchNotifications)
+      .subscribe();
+      
+    return () => { supabase.removeChannel(channel); };
+  }, [user]);
+
+  const notifications = dbNotifications.length > 0 ? dbNotifications : [
     {
-      id: 1,
-      title: "New Session Request",
-      desc: "Justin Case wants to study 'Rust Fundamentals' with you.",
-      time: "2m ago",
-      unread: true,
-    },
-    {
-      id: 2,
-      title: "Mentor Update",
-      desc: "David Chen approved your session for tomorrow.",
-      time: "1h ago",
-      unread: true,
-    },
-    {
-      id: 3,
-      title: "AI Analysis Ready",
-      desc: "Your resume score has been updated. Check the builder.",
-      time: "3h ago",
+      id: 'empty',
+      title: "System Update",
+      desc: "You have no pending connection requests right now. Explore the Community board!",
+      time: "Just now",
       unread: false,
     }
   ];
-
-  const { profile, user, refreshProfile } = useAuth();
 
   useEffect(() => {
     if (profile) {
@@ -238,7 +270,7 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
               >
                 <div className="p-6 border-b border-white/5 flex items-center justify-between">
                   <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400">Notifications</h3>
-                  <button className="text-[10px] text-purple-400 font-bold uppercase tracking-widest hover:text-white transition-colors">Mark all read</button>
+                  <button onClick={() => setDbNotifications([])} className="text-[10px] text-purple-400 font-bold uppercase tracking-widest hover:text-white transition-colors">Mark all read</button>
                 </div>
                 <div className="max-h-[400px] overflow-y-auto scrollbar-hide">
                   {notifications.map((n) => (
@@ -255,9 +287,6 @@ export function Navbar({ onMenuClick }: { onMenuClick?: () => void }) {
                       <p className="text-xs text-gray-500 leading-relaxed font-light">{n.desc}</p>
                     </div>
                   ))}
-                </div>
-                <div className="p-4 bg-white/5 border-t border-white/5 flex justify-center">
-                  <button className="text-[10px] text-gray-500 font-bold uppercase tracking-widest hover:text-purple-400 transition-colors">View All Activity</button>
                 </div>
               </motion.div>
             )}

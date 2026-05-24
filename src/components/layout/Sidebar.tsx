@@ -20,7 +20,6 @@ const menuItems = [
   { icon: <Users size={20} />, label: "Mentors", path: "/mentors" },
   { icon: <Layers size={20} />, label: "Skill Exchange", path: "/skills" },
   { icon: <Briefcase size={20} />, label: "Opportunities", path: "/opportunities" },
-  { icon: <FileText size={20} />, label: "Resume Builder", path: "/resume" },
   { icon: <Sparkles size={20} />, label: "Community", path: "/community" },
 ];
 

@@ -2,20 +2,19 @@
 
 > **ByteHearts × Ranovex AI Product Hackathon 2026 Submission**
 
-StudySphere AI is a dedicated workspace for students. We help you stop studying alone by making it easy to find project partners, schedule video calls with mentors, and generate a tech-focused resume using AI.
+StudySphere AI is a dedicated workspace for students. We help you stop studying alone by making it easy to find project partners and schedule video calls with mentors.
 
 ---
 
 ## 🎯 The Problem & Business Value
 **The Problem:** Today, students lose time jumping between scattered apps—Discord for chatting, Zoom for calls, and LinkedIn for job hunting. It is difficult to find peers with the specific skills you need for hackathons, and getting advice from seniors often feels intimidating.
 
-**Business Value:** StudySphere fixes this by bringing community chat, mentor scheduling, and an AI resume builder into a single workspace. By reducing the time spent switching between apps, we give students a better chance to finish projects and land jobs.
+**Business Value:** StudySphere fixes this by bringing community chat and mentor scheduling into a single workspace. By reducing the time spent switching between apps, we give students a better chance to finish projects and land jobs.
 
 ## 💡 Novelty & Innovation
 Unlike Discord (which is mostly for gaming) or LinkedIn (which targets older professionals), StudySphere is built specifically for **students building software and projects**.
 - **Smart Teammate Matching:** It actively helps you find students who have the exact skills your team is missing.
 - **Instant Video Calls:** We built video calling directly into the browser. You no longer have to create or share messy Zoom links to get help.
-- **Built-in AI Resume Builder:** Instead of paying for a separate service, you can tell our AI your skills and it will instantly format a clean resume for tech recruiters.
 
 ---
 
@@ -23,7 +22,6 @@ Unlike Discord (which is mostly for gaming) or LinkedIn (which targets older pro
 - **Skill Exchange:** Find the right peers for your project team, ask coding questions, and share what you know.
 - **1-on-1 Mentors:** Book time with seniors or alumni to practice interviews or fix difficult bugs.
 - **Live Video:** Talk face-to-face instantly using safe, built-in video rooms.
-- **AI Resume Builder:** Generate a clean, professional resume formatted specifically for tech jobs in seconds.
 - **Opportunities Board:** A feed to track current internships and hackathon deadlines.
 
 ---
@@ -35,7 +33,7 @@ We focused on using modern tools that let us ship a working, reliable product qu
 - **Frontend:** React, TypeScript, Vite, Tailwind CSS (for a fast, responsive user interface).
 - **Backend & Database:** Supabase (for handling user logins and storing data securely).
 - **Integrations:**
-  - **AI Integration:** We used external AI APIs to power the Resume Builder so it works instantly.
+  - **AI Integration:** We used the Groq API (llama-3.3-70b-versatile) via Supabase Edge Functions to power a real-time AI Mentor Chatbot.
   - **Video Calling:** We integrated the Jitsi API to handle video calls smoothly in the browser.
 
 ---
@@ -77,7 +75,7 @@ Follow these steps to run StudySphere AI locally on your computer.
 
 ## 🔮 Future Scope
 - **Phase 1 (Current):** Launch the working workspace and onboard our first 100 students.
-- **Phase 2:** Connect the app to GitHub so it can automatically add your coding projects to your AI resume.
+- **Phase 2:** Connect the app to GitHub so we can automatically verify user skills.
 - **Phase 3:** Create private groups for specific universities so alumni can help students directly.
 
 ---

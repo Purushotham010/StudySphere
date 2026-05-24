@@ -9,7 +9,6 @@ import Mentors from "./pages/Mentors";
 import SkillExchange from "./pages/SkillExchange";
 import Opportunities from "./pages/Opportunities";
 import Community from "./pages/Community";
-import ResumeBuilder from "./pages/ResumeBuilder";
 import Settings from "./pages/Settings";
 import Onboarding from "./pages/auth/Onboarding";
 import VideoCall from "./pages/VideoCall";
@@ -37,7 +36,6 @@ export default function App() {
             <Route path="/skills" element={<SkillExchange />} />
             <Route path="/opportunities" element={<Opportunities />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/resume" element={<ResumeBuilder />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/call/:id" element={<VideoCall />} />
           </Route>

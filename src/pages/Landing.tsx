@@ -320,7 +320,6 @@ export default function Landing() {
             <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-gray-400">Resources</h4>
             <ul className="space-y-4 text-sm text-gray-500 font-medium">
               <li><Link to="/chat" className="hover:text-purple-400 transition-colors">AI Assistant</Link></li>
-              <li><Link to="/resume" className="hover:text-purple-400 transition-colors">Resume Builder</Link></li>
               <li><Link to="/community" className="hover:text-purple-400 transition-colors">Community Forum</Link></li>
             </ul>
           </div>

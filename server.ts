@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -26,36 +25,6 @@ async function startServer() {
   console.log(`==================================================\n`);
 
   app.use(express.json());
-
-  // Gemini API Proxy
-  app.post("/api/gemini/chat", async (req, res) => {
-    try {
-      const { prompt, history } = req.body;
-      const apiKey = process.env.GEMINI_API_KEY;
-      
-      if (!apiKey) {
-        return res.status(500).json({ error: "Gemini API key not configured" });
-      }
-
-      const ai = new GoogleGenAI({ 
-        apiKey,
-        httpOptions: { headers: { 'User-Agent': 'aistudio-build' } }
-      });
-
-      const chat = ai.chats.create({
-        model: "gemini-3-flash-preview",
-        config: {
-          systemInstruction: "You are the StudySphere AI assistant. You help students learn skills, find mentors, and grow professionally in a futuristic student ecosystem.",
-        }
-      });
-
-      const response = await chat.sendMessage({ message: prompt });
-      res.json({ text: response.text });
-    } catch (error: any) {
-      console.error("Gemini Error:", error);
-      res.status(500).json({ error: error.message || "Failed to generate AI response" });
-    }
-  });
 
   // Health check
   app.get("/api/health", (req, res) => {

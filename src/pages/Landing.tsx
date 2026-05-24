@@ -191,9 +191,9 @@ export default function Landing() {
                   Get Started <ArrowRight size={20} />
                 </Link>
               )}
-              <button className="glass px-10 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all border border-white/5">
+              <a href="#features" className="glass px-10 py-4 rounded-full text-lg font-medium hover:bg-white/10 transition-all border border-white/5 inline-flex justify-center items-center">
                 Learn More
-              </button>
+              </a>
             </motion.div>
           </div>
 

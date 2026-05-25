@@ -153,7 +153,7 @@ export default function Landing() {
               transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
               className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-purple-300 text-[10px] font-bold tracking-[0.2em] mb-8 uppercase backdrop-blur-md"
             >
-              <Sparkles size={14} className="text-purple-400" /> Collaborative Excellence
+              <Sparkles size={14} className="text-purple-400" /> AI & Peer-to-Peer Learning
             </motion.div>
 
             <motion.h1
@@ -300,8 +300,8 @@ export default function Landing() {
 
       {/* Footer Refinement */}
       <footer className="border-t border-white/5 py-24 px-6 relative z-10 glass backdrop-blur-3xl">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">
-          <div className="space-y-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+          <div className="md:col-span-6 space-y-6">
             <div className="flex items-center gap-3">
               <img src="/studysphere-logo.png" alt="StudySphere Logo" className="w-6 h-6 object-contain" />
               <span className="text-xl font-bold tracking-tight">StudySphere</span>
@@ -310,7 +310,7 @@ export default function Landing() {
               Empowering students through collaboration, mentorship, and peer-to-peer learning communities.
             </p>
           </div>
-          <div className="space-y-6">
+          <div className="md:col-span-3 space-y-6">
             <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-gray-400">Platform</h4>
             <ul className="space-y-4 text-sm text-gray-500 font-medium">
               <li><Link to="/dashboard" className="hover:text-purple-400 transition-colors">Dashboard</Link></li>
@@ -318,21 +318,12 @@ export default function Landing() {
               <li><Link to="/skills" className="hover:text-purple-400 transition-colors">Skill Exchange</Link></li>
             </ul>
           </div>
-          <div className="space-y-6">
+          <div className="md:col-span-3 space-y-6">
             <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-gray-400">Resources</h4>
             <ul className="space-y-4 text-sm text-gray-500 font-medium">
               <li><Link to="/chat" className="hover:text-purple-400 transition-colors">AI Assistant</Link></li>
               <li><Link to="/community" className="hover:text-purple-400 transition-colors">Community Forum</Link></li>
             </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-gray-400">Feedback</h4>
-            <div className="flex flex-col gap-4">
-              <div className="p-4 bg-white/5 border border-white/10 rounded-2xl">
-                <p className="text-xs text-gray-400 italic">"StudySphere has fundamentally changed how I approach my engineering learning."</p>
-                <div className="mt-2 text-[10px] font-bold text-purple-400 uppercase tracking-widest">— Alex Chen</div>
-              </div>
-            </div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">

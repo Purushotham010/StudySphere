@@ -36,6 +36,23 @@ We focused on using modern tools that let us ship a working, reliable product qu
   - **AI Integration:** We used the Groq API (llama-3.3-70b-versatile) via Supabase Edge Functions to power a real-time AI Mentor Chatbot.
   - **Video Calling:** We integrated the Jitsi API to handle video calls smoothly in the browser.
 
+### 📐 System Architecture
+
+```mermaid
+graph TD
+    Client[React / Vite Frontend] -->|Auth & Database| Supabase[(Supabase PostgreSQL)]
+    Client -->|AI Chat Requests| Edge[Supabase Edge Functions]
+    Edge -->|Prompt & Context| Groq[Groq API / Llama 3.3]
+    Client -->|WebRTC Video| Jitsi[Jitsi Video API]
+```
+
+### 🧠 AI Architecture & Technical Implementation
+Here is how our AI integration works under the hood to provide a seamless learning experience:
+- **Frontend Interface:** Users interact with a custom-built chat UI in React that manages conversational state.
+- **Secure Middleware:** To keep our API keys secure, the frontend sends requests to a backend **Supabase Edge Function** (`studysphere-ai-mentor`).
+- **AI Processing:** The Edge function securely communicates with the **Groq API**, utilizing the `llama-3.3-70b-versatile` model. We chose Groq for its ultra-low latency inference, providing a true real-time conversational experience for students.
+- **Streaming Response:** The model's output is streamed back to the client in real-time using Server-Sent Events (SSE), ensuring the UI feels fast and responsive.
+
 ---
 
 ## 🚀 Setup Instructions
@@ -80,7 +97,6 @@ Follow these steps to run StudySphere AI locally on your computer.
 
 ---
 
-## 👥 Contributors
-- **[Your Name / Team Name]** - *Product Engineering & UI/UX*
-
-*(Add any additional team members here)*
+## 👥 Team Paradox
+- **Kancharla Harika Kalyani** - *Frontend Architecture, UI/UX Design & Product Strategy* (Led React, Tailwind, and Interface Design)
+- **Chowdam Purushothamudu** - *Backend Systems, AI Integration & Deployment* (Led Supabase, Groq API, Jitsi WebRTC, and Vercel Deployment)

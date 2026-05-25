@@ -74,14 +74,15 @@ export default function Landing() {
             Ecosystem
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-purple-500 transition-all group-hover:w-full" />
           </a>
-          <a href="#about" className="hover:text-white transition-colors relative group">
+          <Link to="/mentors" className="hover:text-white transition-colors relative group">
             Mentors
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-purple-500 transition-all group-hover:w-full" />
-          </a>
-          <a href="#community" className="hover:text-white transition-colors relative group">
+          </Link>
+          <Link to="/community" className="hover:text-white transition-colors relative group">
             Community
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-purple-500 transition-all group-hover:w-full" />
-          </a>
+          </Link>
+
         </div>
 
         <div className="flex items-center gap-6">
@@ -124,8 +125,9 @@ export default function Landing() {
             </div>
             <div className="flex flex-col gap-6 text-xl font-medium">
               <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">Ecosystem</a>
-              <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">Mentors</a>
-              <a href="#community" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">Community</a>
+              <Link to="/mentors" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">Mentors</Link>
+              <Link to="/community" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">Community</Link>
+
               {!user && (
                 <Link to="/signup" onClick={() => setIsMobileMenuOpen(false)} className="mt-4 text-center btn-primary w-full py-4 rounded-xl">
                   Join the Community
